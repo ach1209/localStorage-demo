@@ -28,6 +28,25 @@
     <button id="btn">Leave a Comment</button>
   </main>
 
+  <div id="text-modal">
+    <div class="text-modal__inner">
+      <form action="/">
+        <div class="name-container">
+          <label for="name">Full Name</label>
+          <input type="text" id="userName">
+        </div>
+        <div class="msg-container">
+          <label for="message">Message</label>
+          <textarea name="message" id="msg" cols="30" rows="10"></textarea>
+        </div>
+      </form>
+      <div class="modal-btn-container">
+        <button id="submit">Submit</button>
+        <button id="cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script src="scripts.js"></script>
 </body>
 </html>
