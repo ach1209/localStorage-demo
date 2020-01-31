@@ -28,7 +28,8 @@ main {
   padding: 3rem;
   margin: 3rem;
   border-radius: 3px;
-  box-shadow: 0px 1px 6px rgba(var(--boxShadow), 0.25);
+  box-shadow: 0px 1px 6px rgba(0,0,0, 0.25),
+              0px 1px 3px rgba(0,0,0, 0.25);
 }
 
 h1,
@@ -76,6 +77,8 @@ hr {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color ease-out 0.3s;
+  box-shadow: 0px 0px 4px rgba(0,0,0, 0.25),
+              0px 1px 3px rgba(0,0,0, 0.25)
 }
 
 #btn:hover,
@@ -97,10 +100,10 @@ hr {
 }
 
 .text-modal__inner {
-  background-color:#ffffff;
-  width: 80%;
+  background-color:var(--mainBgColor);
+  width: 60%;
   height: auto;
-  padding: 2rem;
+  padding: 2.5rem;
   margin: auto;
   position: absolute;
   top: 50%;
@@ -113,19 +116,46 @@ hr {
 label {
   display: inline-block;
   width: 100%;
+  flex: 0.2;
+}
+
+input {
+  width: 25%;
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 4px rgba(0,0,0, 0.25),
+              0px 1px 3px rgba(0,0,0, 0.25);
 }
 
 textarea {
   width: 100%;
   resize: none;
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 4px rgba(0,0,0, 0.25),
+              0px 1px 3px rgba(0,0,0, 0.25);
 }
 
 .name-container,
 .msg-container {
   margin-bottom: 3rem;
+  display: flex;
+}
+
+.modal-btn-container {
+  display: flex;
+  justify-content: end;
 }
 
 #submit,
 #cancel {
   padding: 1rem 1.5rem;
+}
+
+#cancel {
+  margin-left: 1rem;
 }
