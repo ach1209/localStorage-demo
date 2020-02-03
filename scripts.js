@@ -6,27 +6,57 @@ const userName = document.getElementById('userName');
 const msg = document.getElementById('msg');
 const submit = document.getElementById('submit');
 const cancel = document.getElementById('cancel');
+let getAllComments = JSON.parse(localStorage.getItem('allComments'));
 
-function openModal() {
-  modal.style.display = "block";
+window.onload = () => {
+  if (getAllComments) {
+    console.log(getAllComments);
+    getAllComments.forEach(comment => {
+      let newElement = document.createElement('div');
+      newElement.className = 'comment';
+      newElement.innerHTML = `
+      <span class="user"><i class="material-icons">person</i>${comment.user}</span>
+      <p>${comment.msg}</p>
+      `
+    document.getElementById('bottom-container').insertAdjacentElement('beforeend', newElement);
+    });
+    commentCount += getAllComments.length;
+    commentCounter.innerHTML = '('+ commentCount + ')';    
+  }
 }
 
-function closeModal() {
-  modal.style.display = "none";
-  userName.value = '';
-  msg.value = '';
-  userName.placeholder = '';
-  msg.placeholder = '';
+function toggleModal() {
+  if (modal.style.display == "block") {
+    modal.style.display = "none";
+    userName.value = '';
+    msg.value = '';
+    userName.placeholder = '';
+    msg.placeholder = '';
+  } else {
+    modal.style.display = "block";
+  }
+}
+
+function AddedComment(user, msg) {
+  this.user = user,
+  this.msg = msg
 }
 
 function createElement() {
+  let newComment = new AddedComment(userName.value, msg.value);
+  if (getAllComments == null) {
+    getAllComments = [];
+  }
+  getAllComments.push(newComment);
+  localStorage.setItem('allComments', JSON.stringify(getAllComments));
+
   let newElement = document.createElement('div');
-    newElement.className = 'comment';
-    newElement.innerHTML = `
-    <span class="user"><i class="material-icons">person</i>${userName.value}</span>
-    <p>${msg.value}</p>
-    `
-    document.getElementById('bottom-container').insertAdjacentElement('beforeend', newElement);
+      newElement.className = 'comment';
+      newElement.innerHTML = `
+      <span class="user"><i class="material-icons">person</i>${newComment.user}</span>
+      <p>${newComment.msg}</p>
+      `
+  document.getElementById('bottom-container').insertAdjacentElement('beforeend', newElement);
 }
 
 function addComment() {
@@ -43,6 +73,6 @@ function addComment() {
   }
 }
 
-btn.addEventListener('click', openModal);
+btn.addEventListener('click', toggleModal);
 submit.addEventListener('click', addComment);
-cancel.addEventListener('click', closeModal);
+cancel.addEventListener('click', toggleModal);
