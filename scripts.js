@@ -10,9 +10,7 @@ let getAllComments = JSON.parse(localStorage.getItem('allComments'));
 
 window.onload = () => {
   if (getAllComments) {
-    getAllComments.forEach(comment => {
-      createElement(comment.user, comment.msg);
-    });
+    getAllComments.forEach(comment => createElement(comment.user, comment.msg));
     commentCount += getAllComments.length;
     commentCounter.innerHTML = '('+ commentCount + ')';    
   }
