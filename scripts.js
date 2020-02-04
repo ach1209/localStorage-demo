@@ -46,7 +46,7 @@ function createElement(name, message) {
 }
 
 function addComment() {
-  if (userName.value != '' && msg.value != '') {
+  if (userName.value.trim() != '' && msg.value.trim() != '') {
     let newComment = new AddedComment(userName.value, msg.value);
     if (getAllComments == null) {
       getAllComments = [];
