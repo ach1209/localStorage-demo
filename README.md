@@ -1,3 +1,3 @@
-# simple-comment-feature
+# localStorage-comments
 
 Comment feature using vanilla JavaScript
