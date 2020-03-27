@@ -1,10 +1,10 @@
-const commentCounter = document.querySelector('.comment-counter');
-const btn = document.getElementById('btn');
-const modal = document.getElementById('text-modal');
-const userName = document.getElementById('userName');
-const msg = document.getElementById('msg');
-const submit = document.getElementById('submit');
-const cancel = document.getElementById('cancel');
+const commentCounter = document.querySelector('.comment-counter'),
+      btn = document.getElementById('btn'),
+      modal = document.getElementById('text-modal'),
+      userName = document.getElementById('userName'),
+      msg = document.getElementById('msg'),
+      submit = document.getElementById('submit'),
+      cancel = document.getElementById('cancel');
 let commentCount = 1;
 let getAllComments = JSON.parse(localStorage.getItem('allComments'));
 
@@ -19,18 +19,21 @@ window.onload = () => {
 function toggleModal() {
   if (modal.style.display == "block") {
     modal.style.display = "none";
-    userName.value = '';
-    msg.value = '';
-    userName.placeholder = '';
-    msg.placeholder = '';
+    let userGenerated = [userName, msg];
+    for (let i = 0; i < userGenerated.length; i++) {
+      userGenerated[i].value = '';
+      userGenerated[i].placeholder = '';
+    }
   } else {
     modal.style.display = "block";
   }
 }
 
-function AddedComment(user, msg) {
-  this.user = user,
-  this.msg = msg
+class AddedComment {
+  constructor(_user, _msg) {
+    this.user = _user;
+    this.msg = _msg;
+  }
 }
 
 function createElement(name, message) {
@@ -46,12 +49,14 @@ function createElement(name, message) {
 function addComment() {
   if (userName.value.trim() != '' && msg.value.trim() != '') {
     let newComment = new AddedComment(userName.value, msg.value);
+    // Create empty array to house incoming comments if getAllComments is empty 
     if (getAllComments == null) {
       getAllComments = [];
     }
     getAllComments.push(newComment);
     localStorage.setItem('allComments', JSON.stringify(getAllComments));
   
+    // Add HTML element and update comment count
     createElement(newComment.user, newComment.msg);
     toggleModal();
     commentCount++;
