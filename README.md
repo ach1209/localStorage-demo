@@ -1,3 +1,3 @@
-# localStorage-comments
+# localStorage-demo
 
-Comment feature using vanilla JavaScript
+Demo using localStorage with vanilla JavaScript
