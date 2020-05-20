@@ -1,10 +1,4 @@
-const commentCounter = document.querySelector('.comment-counter'),
-      btn = document.getElementById('btn'),
-      modal = document.getElementById('text-modal'),
-      userName = document.getElementById('userName'),
-      msg = document.getElementById('msg'),
-      submit = document.getElementById('submit'),
-      cancel = document.getElementById('cancel');
+const commentCounter = document.querySelector('.comment-counter');
 let commentCount = 1;
 let getAllComments = JSON.parse(localStorage.getItem('allComments'));
 
@@ -16,7 +10,9 @@ window.onload = () => {
   }
 }
 
-function toggleModal() {
+toggleModal = () => {
+  const modal = document.getElementById('text-modal');
+
   if (modal.style.display == "block") {
     modal.style.display = "none";
     let userGenerated = [userName, msg];
@@ -36,18 +32,22 @@ class AddedComment {
   }
 }
 
-function createElement(name, message) {
+createElement = (name, message) => {
   let newElement = document.createElement('div');
-      newElement.className = 'comment';
-      newElement.innerHTML = `
-      <span class="user"><i class="material-icons">person</i>${name}</span>
-      <p>${message}</p>
-      `
-  document.getElementById('bottom-container').insertAdjacentElement('beforeend', newElement);
+
+  newElement.className = 'comment';
+  newElement.innerHTML = `
+  <span class="user"><i class="material-icons">person</i>${name}</span>
+  <p>${message}</p>
+  `
+  document.getElementById('comment-container').insertAdjacentElement('beforeend', newElement);
 }
 
-function addComment() {
-  if (userName.value.trim() != '' && msg.value.trim() != '') {
+addComment = () => {
+  const userName = document.getElementById('userName');
+  const msg = document.getElementById('msg');
+
+  if (userName.value.trim() !== '' && msg.value.trim() !== '') {
     let newComment = new AddedComment(userName.value, msg.value);
     // Create empty array to house incoming comments if getAllComments is empty 
     if (getAllComments == null) {
@@ -67,6 +67,6 @@ function addComment() {
   }
 }
 
-btn.addEventListener('click', toggleModal);
-submit.addEventListener('click', addComment);
-cancel.addEventListener('click', toggleModal);
+document.getElementById('btn').addEventListener('click', toggleModal);
+document.getElementById('submit').addEventListener('click', addComment);
+document.getElementById('cancel').addEventListener('click', toggleModal);

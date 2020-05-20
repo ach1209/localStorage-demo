@@ -1,0 +1,28 @@
+{
+  "name": "localstorage-demo",
+  "version": "1.0.0",
+  "description": "Demo using localStorage with vanilla JavaScript",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack",
+    "start": "webpack-dev-server",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ach1209/localStorage-demo.git"
+  },
+  "author": "Anthony Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ach1209/localStorage-demo/issues"
+  },
+  "homepage": "https://github.com/ach1209/localStorage-demo#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
