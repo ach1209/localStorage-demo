@@ -6,20 +6,16 @@ window.onload = () => {
   if (getAllComments) {
     getAllComments.forEach(comment => createElement(comment.user, comment.msg));
     commentCount += getAllComments.length;
-    commentCounter.innerHTML = '('+ commentCount + ')';    
+    commentCounter.innerHTML = `(${commentCount})`;    
   }
 }
 
-toggleModal = () => {
+const toggleModal = () => {
   const modal = document.getElementById('text-modal');
 
   if (modal.style.display == "block") {
-    modal.style.display = "none";
-    let userGenerated = [userName, msg];
-    for (let i = 0; i < userGenerated.length; i++) {
-      userGenerated[i].value = '';
-      userGenerated[i].placeholder = '';
-    }
+    modal.removeAttribute('style');
+    document.querySelector('form').reset();
   } else {
     modal.style.display = "block";
   }
@@ -32,18 +28,17 @@ class AddedComment {
   }
 }
 
-createElement = (name, message) => {
+const createElement = (name, message) => {
   let newElement = document.createElement('div');
-
-  newElement.className = 'comment';
-  newElement.innerHTML = `
-  <span class="user"><i class="material-icons">person</i>${name}</span>
-  <p>${message}</p>
-  `
+      newElement.className = 'comment';
+      newElement.innerHTML = `
+        <span class="user"><i class="material-icons">person</i>${name}</span>
+        <p>${message}</p>
+      `
   document.getElementById('comment-container').insertAdjacentElement('beforeend', newElement);
 }
 
-addComment = () => {
+const addComment = () => {
   const userName = document.getElementById('userName');
   const msg = document.getElementById('msg');
 
@@ -60,7 +55,7 @@ addComment = () => {
     createElement(newComment.user, newComment.msg);
     toggleModal();
     commentCount++;
-    commentCounter.innerHTML = '('+ commentCount + ')';    
+    commentCounter.innerHTML = `(${commentCount})`;    
   } else {
     userName.placeholder = "This field is required before submitting";
     msg.placeholder = "This field is required before submitting";
